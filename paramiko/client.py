@@ -500,7 +500,7 @@ class SSHClient (ClosingContextManager):
 
         if not two_factor:
             for key_filename in key_filenames:
-                for pkey_class in (RSAKey):
+                for pkey_class in (RSAKey, DSSKey, ECDSAKey):
                     try:
                         key = pkey_class.from_private_key_file(key_filename, password)
                         self._log(DEBUG, 'Trying key %s from %s' % (hexlify(key.get_fingerprint()), key_filename))
